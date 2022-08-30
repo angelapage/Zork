@@ -8,14 +8,19 @@ namespace Zork
         {
             Console.WriteLine("Welcome to Zork!");
 
-            string inputString = System.Console.ReadLine().Trim().ToUpper();
+            string inputString = System.Console.ReadLine();
+            Commands command = ToCommand(inputString.Trim().ToUpper());
+            Console.WriteLine(command);           
+        }
 
-            if (inputString == "QUIT")
+        private static Commands ToCommand(string commandString)
+        {
+            if (commandString == "QUIT")
             {
                 Console.WriteLine("Thank you for playing.");
             }
 
-            else if (inputString == "LOOK")
+            else if (commandString == "LOOK")
             {
                 Console.WriteLine("This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.");
             }
@@ -23,8 +28,10 @@ namespace Zork
             else
             {
 
-                Console.WriteLine($"Unknown command:" + inputString);
+                Console.WriteLine($"Unknown command:" + commandString);
             }
+
+            return Enum.TryParse(commandString,true,out Commands result) ? result : Commands.UNKNOWN;
         }
     }
 }
