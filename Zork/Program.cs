@@ -8,45 +8,39 @@ namespace Zork
         {
             Console.WriteLine("Welcome to Zork!");
 
-            string inputString = System.Console.ReadLine();
-            Commands command = ToCommand(inputString.Trim().ToUpper());
-            Console.WriteLine(command);  
-            
-            if (command == Commands.QUIT)
+            bool isRunning = true;
+            while (isRunning)
             {
-                Console.WriteLine("Thank you for playing.");
-            }
+                Console.Write("> ");
+                string inputString = System.Console.ReadLine();
+                Commands command = ToCommand(inputString.Trim());
 
-            else if (command == Commands.LOOK)
-            {
-                Console.WriteLine("This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.");
-            }
+                string outputString;
+                switch (command)
+                {
+                    case Commands.QUIT:
+                        isRunning = false;
+                        outputString = "Thank you for playing!.";
+                        break;
 
-            else if (command == Commands.NORTH)
-            {
-                Console.WriteLine("You moved North.");
-            }
+                    case Commands.LOOK:
+                        outputString = "This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.";
+                        break;
 
-            else if (command == Commands.SOUTH)
-            {
-                Console.WriteLine("You moved South.");
-            }
+                    case Commands.NORTH:                        
+                    case Commands.SOUTH:                 
+                    case Commands.EAST:                       
+                    case Commands.WEST:                       
+                        outputString = $"You moved {command}.";
+                        break;
+                   
+                    default:
+                        outputString = "Unknown command.";
+                        break;
+                }
 
-            else if (command == Commands.EAST)
-            {
-                Console.WriteLine("You moved East.");
-            }
-
-            else if (command == Commands.WEST)
-            {
-                Console.WriteLine("You moved West.");
-            }
-
-            else
-            {
-
-                Console.WriteLine($"Unknown command:" + inputString);
-            }
+                Console.WriteLine(outputString);
+            }                     
         }
 
         private static Commands ToCommand(string commandString)
