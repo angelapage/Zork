@@ -25,6 +25,26 @@ namespace Zork
                 Console.WriteLine("This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.");
             }
 
+            else if (commandString == "NORTH")
+            {
+                Console.WriteLine("You moved North.");
+            }
+
+            else if (commandString == "SOUTH")
+            {
+                Console.WriteLine("You moved South.");
+            }
+
+            else if (commandString == "EAST")
+            {
+                Console.WriteLine("You moved East.");
+            }
+
+            else if (commandString == "WEST")
+            {
+                Console.WriteLine("You moved West.");
+            }
+
             else
             {
 
