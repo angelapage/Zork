@@ -4,6 +4,13 @@ namespace Zork
 {
     class Program
     {
+        private static string CurrentRoom
+        {
+            get
+            {
+                return _rooms[_currentRow, _currentColumn];
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
@@ -11,7 +18,7 @@ namespace Zork
             bool isRunning = true;
             while (isRunning)
             {
-                Console.Write($"{_rooms[_currentRow, _currentColumn]}\n >");
+                Console.Write($"{CurrentRoom}\n >");
                 string inputString = System.Console.ReadLine();
                 Commands command = ToCommand(inputString.Trim());
 
