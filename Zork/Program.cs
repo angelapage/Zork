@@ -63,7 +63,6 @@ namespace Zork
                             outputString = "The way is shut!";
                         }
 
-
                         break;
 
                     default:
@@ -127,7 +126,7 @@ namespace Zork
             roomMap["Behind House"].Description = "You are behind a white house. In one corner of the house there is a small window which is slightly ajar.";
 
             roomMap["Dense Woods"].Description = "This is a dimly lit forest, with large trees all around. To the east, there appears to be sunlight.";
-            roomMap["North of House"].Description = "You are facing the north side of a white house. There is no ddor here, and all the windows are barred.";
+            roomMap["North of House"].Description = "You are facing the north side of a white house. There is no door here, and all the windows are barred.";
             roomMap["Clearing"].Description = "You are in a clearing, with a forest surrounding you on the west and south.";        
         }
 
