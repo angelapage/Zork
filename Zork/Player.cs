@@ -6,16 +6,30 @@
         {
             get
             {
-                return _world.Rooms[_currentRow, _currentColumn];
+                return _world.Rooms[_location.Row, _location.Column];
             }
         }
 
         public int Score { get; }
         public int Moves { get; }
 
-        public Player (World world)
+        public Player (World world, string startingLocation)
         {
             _world = world;
+
+            for (int row = 0; row < _world.Rooms.GetLength(0); row++)
+            {
+                for (int col = 0; col < _world.Rooms.GetLength(1); col++)
+                {
+                    if (_world.Rooms[row, col].Name == startingLocation)
+                    {
+                        _location = (row, col);
+                        return;
+                    }
+                }
+            }
+
+            throw new System.Exception($"Invalid starting location: {startingLocation}");
         }
 
         public bool Move(Commands command)
@@ -24,23 +38,23 @@
 
             switch (command)
             {
-                case Commands.NORTH when _currentRow < _world.Rooms.GetLength(0) - 1:
-                    _currentRow++;
+                case Commands.NORTH when _location.Row < _world.Rooms.GetLength(0) - 1:
+                    _location.Row++;
                     didMove = true;
                     break;
 
-                case Commands.SOUTH when _currentRow > 0:
-                    _currentRow--;
+                case Commands.SOUTH when _location.Row > 0:
+                    _location.Row--;
                     didMove = true;
                     break;
 
-                case Commands.EAST when _currentColumn < _world.Rooms.GetLength(1) - 1:
-                    _currentColumn++;
+                case Commands.EAST when _location.Column < _world.Rooms.GetLength(1) - 1:
+                    _location.Column++;
                     didMove = true;
                     break;
 
-                case Commands.WEST when _currentColumn > 0:
-                    _currentColumn--;
+                case Commands.WEST when _location.Column > 0:
+                    _location.Column--;
                     didMove = true;
                     break;
             }
@@ -49,7 +63,7 @@
         }
 
         private World _world;
-        private static int _currentRow = 1;
-        private static int _currentColumn = 1;
+
+        private (int Row, int Column) _location;
     }
 }

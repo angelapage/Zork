@@ -6,7 +6,7 @@ namespace Zork
     {
         static void Main(string[] args)
         {
-            string gameFilename = "Content/Game.json";
+            string gameFilename = @"Content\Game.json";
 
             Game game = Game.Load(gameFilename);
             game.Run();

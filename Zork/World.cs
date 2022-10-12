@@ -2,10 +2,6 @@
 {
     internal class World
     {
-        public Room[,] Rooms
-        {
-            get;
-            set;
-        }      
+        public Room[,] Rooms { get; set; }
     }
 }

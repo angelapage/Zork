@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Zork
 {
     class Game
     {
+        public string StartingLocation { get; set; }
+
         public World World { get; set; }
         
         public Player Player { get; set; }
@@ -80,7 +81,7 @@ namespace Zork
         public static Game Load(string roomsFilename)
         {
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(roomsFilename));
-            game.Player = new Player(game.World);
+            game.Player = new Player(game.World,game.StartingLocation);
 
             return game;
         }
