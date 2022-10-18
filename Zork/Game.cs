@@ -11,8 +11,7 @@ namespace Zork
         public World World { get; set; }
         
         public Player Player { get; set; }
-
-        
+  
         public void Run()
         {
             Console.WriteLine("Welcome to Zork!");
@@ -52,14 +51,15 @@ namespace Zork
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        if (Player.Move(command))
+                        Directions direction = (Directions)command;
+                        if (Player.Move(direction) == false)
                         {
-                            outputString = $"You moved {command}";
+                            outputString = "The way is shut!";
                         }
 
                         else
-                        {
-                            outputString = "The way is shut!";
+                        {                           
+                            outputString = $"You moved {command}";
                         }
 
                         break;

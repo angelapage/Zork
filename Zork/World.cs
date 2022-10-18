@@ -1,7 +1,31 @@
-﻿namespace Zork
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+
+namespace Zork
 {
-    internal class World
+    public class World
     {
-        public Room[,] Rooms { get; set; }
+        public Room[] Rooms { get; set; }
+
+        public Dictionary<string, Room> RoomsByName { get; }
+
+        public World(Room[] rooms)
+        {
+            Rooms = rooms;
+            RoomsByName = new Dictionary<string, Room>();
+            foreach (Room room in rooms)
+            {
+                RoomsByName.Add(room.Name, room);
+            }
+        }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext streamingContext)
+        {
+            foreach (Room room in Rooms)
+            {
+                room.UpdateNeighbors(this);
+            }
+        }
     }
 }
