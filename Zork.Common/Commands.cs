@@ -1,13 +1,16 @@
-﻿namespace Zork
+﻿namespace Zork.Common
 {
     enum Commands
     {
-        QUIT = 0,
+        QUIT,
         LOOK,
         NORTH,
         SOUTH,
         EAST,
         WEST,
+        TAKE,
+        DROP,
+        INVENTORY,
         UNKNOWN,
     }
 }
