@@ -28,6 +28,7 @@ namespace Zork.Cli
             while (game.IsRunning)
             {
                 game.Output.Write("> ");
+                game.Output.WriteLine($"Health: {game.Player.Health}");
                 input.ProcessInput();
             }
 
