@@ -9,7 +9,7 @@ namespace Zork.Common
         public World World { get; }
 
         [JsonIgnore]
-        public Player Player { get; }
+        public Player Player { get; set; }
 
         public Enemy Enemy { get; }
 
@@ -134,7 +134,7 @@ namespace Zork.Common
                     }
                     else
                     {
-                       Output.WriteLine("Attacked");
+                       Attack(subject);
                     }                
                     break;
 
@@ -165,7 +165,8 @@ namespace Zork.Common
             }
             foreach(Enemy enemy in Player.CurrentRoom.Enemies)
             {
-                Output.WriteLine(enemy.Description);
+                Output.WriteLine($"\nEnemy Health: {enemy.Health}");
+                Output.WriteLine( enemy.Description);
             }
         }
 
@@ -197,6 +198,32 @@ namespace Zork.Common
                 Player.RemoveItemFromInventory(itemToDrop);
                 Output.WriteLine("Dropped.");
             }
+        }
+
+        private void Attack(string enemyName)
+        {
+            Enemy enemyToAttack = Player.CurrentRoom.Enemies.FirstOrDefault(enemy => string.Compare(enemy.Name, enemyName, ignoreCase: true) == 0);
+            if(enemyToAttack == null)
+            {
+                Output.WriteLine("You can't attack that.");
+            }
+
+            else if (enemyToAttack.Health == 1)
+            {               
+                enemyToAttack = null;
+                Output.WriteLine("You vanqusihed the troll.");
+            }
+            else 
+            {
+                Output.WriteLine("Attacked");
+                Output.WriteLine($"\nEnemy Health: {enemyToAttack.Health -= 1}");
+                Output.WriteLine("Enemy Attacked");
+                Output.WriteLine(Player.Health -= 1);
+                if (Player.Health == 0)
+                {
+                    Output.WriteLine("You've been defeated.");
+                }
+            }            
         }
 
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.Unknown;

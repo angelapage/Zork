@@ -116,7 +116,7 @@ namespace Zork.Common
         private Room _currentRoom;
         private int _moves;
         private int _score;
-        private int _health = 5;
+        private int _health = 3;
         private readonly List<Item> _inventory;
     }
 }
