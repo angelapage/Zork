@@ -112,7 +112,6 @@ namespace Zork.Common
                 throw new Exception("Could not remove item from inventory.");
             }
         }
-
         private readonly World _world;
         private Room _currentRoom;
         private int _moves;

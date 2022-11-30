@@ -11,6 +11,8 @@ namespace Zork.Common
         [JsonIgnore]
         public Player Player { get; }
 
+        public Enemy Enemy { get; }
+
         [JsonIgnore]
         public IInputService Input { get; private set; }
 
@@ -125,6 +127,17 @@ namespace Zork.Common
                     Output.WriteLine($"\n Your score would be {Player.Score} in {Player.Moves} move(s)");
                     break;
 
+                case Commands.Attack:
+                    if (string.IsNullOrEmpty(subject))
+                    {
+                        Output.WriteLine("This command requires a subject.");
+                    }
+                    else
+                    {
+                       Output.WriteLine("Attacked");
+                    }                
+                    break;
+
                 default:
                     Output.WriteLine("Unknown command.");
                     break;
@@ -149,6 +162,10 @@ namespace Zork.Common
             foreach (Item item in Player.CurrentRoom.Inventory)
             {
                 Output.WriteLine(item.LookDescription);
+            }
+            foreach(Enemy enemy in Player.CurrentRoom.Enemies)
+            {
+                Output.WriteLine(enemy.Description);
             }
         }
 
