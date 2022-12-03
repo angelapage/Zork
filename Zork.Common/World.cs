@@ -34,14 +34,14 @@ namespace Zork.Common
 
             Items = items;
             _itemsByName = new Dictionary<string, Item>(StringComparer.OrdinalIgnoreCase);
-            foreach (Item item in Items)
+            foreach (Item item in items)
             {
                 _itemsByName.Add(item.Name, item);
             }
 
             Enemies = enemies;
             _enemiesByName = new Dictionary<string, Enemy>(StringComparer.OrdinalIgnoreCase);
-            foreach(Enemy enemy in Enemies)
+            foreach(Enemy enemy in enemies)
             {
                 _enemiesByName.Add(enemy.Name, enemy);
             }

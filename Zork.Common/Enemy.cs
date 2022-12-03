@@ -6,7 +6,7 @@ namespace Zork.Common
     {
         public event EventHandler<int> ChangeHealth;
 
-        public int _health = 5;
+        public int _health = 4;
 
 
         private Room _currentRoom;

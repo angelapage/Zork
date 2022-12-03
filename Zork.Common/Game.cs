@@ -218,7 +218,7 @@ namespace Zork.Common
                 Output.WriteLine("Attacked");
                 Output.WriteLine($"\nEnemy Health: {enemyToAttack.Health -= 1}");
                 Output.WriteLine("Enemy Attacked");
-                Output.WriteLine(Player.Health -= 1);
+                Console.WriteLine(Player.Health -= 1);
                 if (Player.Health == 0)
                 {
                     Output.WriteLine("You've been defeated.");

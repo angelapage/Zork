@@ -18,6 +18,12 @@
         "InventoryDescription": "A pile of leaves."
       }
     ],
+    "Enemies": [
+      {
+        "Name": "Troll",
+        "Description": "An ugly looking troll stands in front of you."
+      }
+    ],
     "Rooms": [
       {
         "Name": "West of House",
@@ -39,7 +45,10 @@
           "North": "Forest 2",
           "East": "Behind House",
           "West": "West of House"
-        }
+        },
+        "EnemyNames": [
+          "Troll"
+        ]
       },
       {
         "Name": "South of House",

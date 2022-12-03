@@ -16,13 +16,6 @@ public class UnityOutputService : MonoBehaviour, IOutputService
     [SerializeField]
     private Transform ContentTransform;
 
-    [SerializeField]
-    [Range(0, 50)]
-
-    private int maxEntries = 2;
-
-
-
     public void Write(object obj)
     {
        ParseAndWriteLine(obj.ToString());
@@ -45,10 +38,6 @@ public class UnityOutputService : MonoBehaviour, IOutputService
 
     private void ParseAndWriteLine(string message)
     {
-        if (_entries.Count >= maxEntries)
-        {
-            
-        }
         var textLine = Instantiate(TextLinePrefab, ContentTransform);
         textLine.text = message;
         _entries.Add(textLine.gameObject);

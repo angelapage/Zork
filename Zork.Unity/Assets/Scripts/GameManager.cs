@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI MovesText;
 
+    [SerializeField]
+    private TextMeshProUGUI HealthText;
+
 
     private void Awake()
     {
@@ -29,7 +32,13 @@ public class GameManager : MonoBehaviour
         _game.Player.LocationChanged += Player_LocationChanged;
         _game.Player.MovesChanged += Player_MovesChanged;
         _game.Player.ChangeScore += Player_ChangeScore;
-        _game.Run(InputService, OutputService);
+        _game.Player.ChangeHealth += Player_ChangeHealth;
+       _game.Run(InputService, OutputService);
+    }
+
+    private void Player_ChangeHealth(object sender, int health)
+    {
+       HealthText.text = "Health:" + _game.Player.Health.ToString();
     }
 
     private void Player_MovesChanged(object sender, int moves)
